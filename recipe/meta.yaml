@@ -13,29 +13,36 @@ source:
 build:
   entry_points:
     - filetype=filetype.__main__:main
-  noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . --no-build-isolation --no-deps -vv
+  skip: true  # [py<35]
 
 requirements:
   host:
-    - python >3.6
+    - python
     - pip
+    - setuptools
+    - wheel
   run:
-    - python >3.6
+    - python
 
 test:
   imports:
     - filetype
-
+  source_files:
+    - tests
+  requires:
+    - pytest
+    - pip
   commands:
-    - filetype --help
+    - pip check
+    - pytest --ignore="tests/test_benchmark.py"
 
 about:
   home: https://github.com/h2non/filetype.py
   license: MIT
   license_family: MIT
-  license_file: {{ environ["RECIPE_DIR"] }}/LICENSE
+  license_file: LICENSE
   summary: Infer file type and MIME type of any file/buffer. No external dependencies.
   description: |
     Small and dependency free Python package to infer file type 
