@@ -36,6 +36,7 @@ test:
     - pip
   commands:
     - pip check
+    - filetype --help
     - pytest --ignore="tests/test_benchmark.py"
 
 about:
