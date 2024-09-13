@@ -53,5 +53,10 @@ about:
   dev_url: https://github.com/h2non/filetype.py
 
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/49522
+    reason: Dependency for chainlit
+  recipe-maintainers:
+    - ianaobi
   recipe-maintainers:
     - druvus
